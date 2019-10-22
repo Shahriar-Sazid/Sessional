@@ -1,0 +1,135 @@
+extends /default.pug
+block topbar
+  ol.breadcrumb
+    li.breadcrumb-item Home
+    if !starter
+      li.breadcrumb-item
+        a(href="#") #{page}
+      // Breadcrumb Menu
+      li.breadcrumb-menu.d-md-down-none
+        .btn-group(role="group" aria-label="Button group")
+          button.btn(type="button" href="#" data-toggle="modal" data-target="#exampleModalLong")
+            i.fa.fa-plus-circle
+            |   Add Product
+          #exampleModalLong.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLongTitle' aria-hidden='true')
+            .modal-dialog(role='document')
+              .modal-content
+                .modal-header
+                  h5#exampleModalLongTitle.modal-title Add Product
+                  button.close(type='button' data-dismiss='modal' aria-label='Close')
+                    span(aria-hidden='true') &times;
+                .modal-body
+                  form(action='' method='post')
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Name
+                        input#product_name.form-control(type='text' name='product_name')
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Type
+                        input#product_type.form-control(type='text' name='product_type')
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Brand
+                        input#product_brand.form-control(type='text' name='product_brand') 
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Country
+                        input#product_country.form-control(type='text' name='product_country')
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Supplier
+                        select#supplier_select.form-control(name='supplier_select')
+                          option(value='0') Please select
+                          option(value='1') Option #1
+                          option(value='2') Option #2
+                          option(value='3') Option #3
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Cost
+                        input#product_cost.form-control(type='number' name='product_cost')
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Date
+                        input#product_date.form-control(type='date' name='product_date')
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Place
+                        input#product_place.form-control(type='text' name='product_place')
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Size
+                        input#product_size.form-control(type='text' name='product_size')
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Quantity
+                        input#product_quantity.form-control(type='text' name='product_quantity')
+                    .form-group
+                      .input-group
+                        .input-group-prepend
+                          span.input-group-text Unit
+                        input#product_unit.form-control(type='text' name='product_unit')
+                .modal-footer
+                  button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+                  button.btn.btn-primary(type='submit') Save changes
+
+          a.btn(href="./")
+            i.icon-graph
+            |   Dashboard
+          a.btn(href="#")
+            i.icon-settings
+            |   Settings
+
+block view
+  .animated.fadeIn
+    .row.mt-4
+      .col-lg-12
+        table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light
+          thead
+            tr
+              th Name
+              th Type
+              th Brand
+              th Country
+              th Supplier
+              th Size
+              th Quantity
+              th Cost
+          tbody
+            each product in products
+              tr
+                td #{product.product_name}
+                td #{product.type}
+                td #{product.brand}
+                td #{product.country}
+                td #{product.supplier_name}
+                td #{product.size}
+                td #{product.quantity}
+                td #{product.cost}
+        nav
+          ul.pagination
+            li.page-item
+              a.page-link(href='#') Prev
+            li.page-item.active
+              a.page-link(href='#') 1
+            li.page-item
+              a.page-link(href='#') 2
+            li.page-item
+              a.page-link(href='#') 3
+            li.page-item
+              a.page-link(href='#') 4
+            li.page-item
+              a.page-link(href='#') Next
+      // /.col
+    // /.row
+

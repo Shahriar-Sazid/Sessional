@@ -1,0 +1,21 @@
+﻿product_id,name,type,brand,country,supplier_id,cost,date,place,size,quantity,unit
+1,Hammer,Ball pin,Ching ping,China,2,50,2019-10-13,G-1,20,400,pcs
+2,Hammer,Claw,Ching ping,China,2,55,2019-10-13,G-1,20,450,pcs
+3,Hammer,Sledge,Ching ping,China,2,50,2019-10-13,G-1,21,500,pcs
+4,Sly Wrench,Adjustable,Mohajang,India,4,100,2019-10-13,G-2,20-22,40,dzns
+5,Sly Wrench,Fixed,Mohajang,India,4,200,2019-10-13,G-2,22-24,100,dzns
+6,Sly Wrench,Carbon Steel,Mohajang,India,4,250,2019-10-13,G-2,22-24,250,dzns
+7,Oil cane,Dami,Fuji,China,5,400,2019-10-13,G-3,,100,pcs
+8,Grease Gun,komdami,Fuji,China,5,100,2019-10-13,G-3,,100,pcs
+9,Hack Frame,Strong,Fuji,China,5,60,2019-10-13,G-3,20,40,pcs
+10,Hand Drill,Dami,Fuji,China,5,200,2019-10-13,G-3,20,65,pcs
+11,Combination Tool Set,142pcs,Fuji,China,5,1000,2019-10-13,G-3,20,15,pcs
+12,Planar Blade,Silver,Zong Tian,China,1,1500,2019-10-14,G-4,,10,pcs
+13,Screw Driver,Blue Raver,Zong Tian,China,1,500,2019-10-14,G-4,10,64,dzns
+14,Screw Driver,Blue Hammering,Zong Tian,China,1,550,2019-10-14,G-4,11,55,dzns
+15,Screw Driver,2 way set,Zong Tian,China,1,250,2019-10-14,G-4,,15,pcs
+16,Screw Driver,Atlas,Zong Tian,China,1,450,2019-10-14,G-4,14,100,dzns
+17,Grinding Disc,Rocket,Fukuda,China,3,75,2019-10-15,G-4,15,80,pcs
+18,Grinding Disc,Apple,Fukuda,China,3,72,2019-10-15,G-4,15,90,pcs
+19,Grinding Disc,Mega,Fukuda,China,3,73,2019-10-15,G-4,15,90,pcs
+20,Grinding Disc,Morita,HMBR,China,3,80,2019-10-15,G-4,15,90,pcs
