@@ -1,0 +1,108 @@
+extends /default.pug
+block topbar
+  ol.breadcrumb
+    li.breadcrumb-item Home
+    if !starter
+      li.breadcrumb-item
+        a(href="#") #{page}
+    // Breadcrumb Menu
+    li.breadcrumb-menu.d-md-down-none
+      .btn-group(role="group" aria-label="Button group")
+        button.btn.mx-1(type="button" id = "add_product_btn" data-toggle="modal" data-target="#exampleModalLong")
+          i.fa.fa-plus-circle
+          |  Add Product
+        .form-group.m-auto
+          .input-group
+            .input-group-prepend
+              select#searchBy.form-control(placeholder = 'Search by' required)
+                option Name
+                option Brand
+                option Country
+                option Supplier
+                option Place
+            input#searchProduct.form-control(type='text' placeholder='Hammer..')
+            .input-group-append
+              button#searchProductButton.btn.btn-light(type='button')
+                span.input-group-text
+                  i.fa.fa-search
+              
+
+block view
+  script. 
+    let products = !{JSON.stringify(products)};
+  .animated.fadeIn
+    .row.mt-4
+      .col-lg-12
+        include _table
+        
+  #exampleModalLong.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLongTitle' aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5#exampleModalLongTitle.modal-title Add Product
+          button.modal_close_btn.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+          form.form(action='' method='post' id = 'add_product_form')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Name
+                input#product_name.form-control(type='text' required)
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Type
+                input#product_type.form-control(type='text')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Brand
+                input#product_brand.form-control(type='text') 
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Country
+                input#product_country.form-control(type='text')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Supplier
+                select#supplier_select.form-control(required)
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Cost
+                input#product_cost.form-control(type='number' min = '0' required)
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Date
+                input#product_date.form-control(type='date' required)
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Place
+                select#product_place_select.form-control(required)
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Size
+                input#product_size.form-control(type='text')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Quantity
+                input#product_quantity.form-control(type='number' min='0' required)
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Unit
+                input#product_unit.form-control(type='text' required)
+            .form-actions.d-flex.justify-content-center
+              button.modal_close_btn.btn.btn-secondary.mx-1(type='button' data-dismiss='modal') Cancel        
+              button.btn.btn-primary.mx-1(type='submit' id = "product_save_btn" data-product_id = -1) Add
+              button#deleteProductButton.btn.btn-danger.mx-1(type = 'button')
+                i.cui-trash.font-2xl
+  script(src='js/add_product.js')
+  
