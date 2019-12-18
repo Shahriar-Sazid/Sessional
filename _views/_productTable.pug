@@ -1,7 +1,7 @@
 table#productTable.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light
   thead
     tr
-      th(style="width:50px") Edit
+      th(style='width:50px;') Edit
       th Name
       th Type
       th Brand
@@ -16,7 +16,7 @@ table#productTable.table.table-responsive-sm.table-bordered.table-striped.table-
     - for( let i = 0; i<products.length;i++){
       tr
         td
-          button.edit_product_btn.btn.btn-light(type="button" data-toggle="modal" data-target="#exampleModalLong" data-idx=i data-product_id=products[i].product_id)
+          button.edit_product_btn.btn.btn-light(type="button" data-toggle="modal" data-target="#updateProductModal" data-idx=i data-product_id=products[i].product_id)
             i.cui-pencil
         td #{products[i].product_name}
         td #{products[i].type}

@@ -1,15 +1,15 @@
 extends /default.pug
 block topbar
   ol.breadcrumb
-    li.breadcrumb-item Home
-    if !starter
-      li.breadcrumb-item
-        a(href="#") #{page}
+    h2(style='font-family: cursive;font-weight: bold;') Product
     // Breadcrumb Menu
     li.breadcrumb-menu.d-md-down-none
       .btn-group(role="group" aria-label="Button group")
-        button.btn.mx-1(type="button" id = "add_product_btn" data-toggle="modal" data-target="#exampleModalLong")
-          i.fa.fa-plus-circle
+        button.btn.mx-1.shiftProductSwitch(type="button")
+          i.fas.fa-exchange-alt
+          |  Shift Product
+        button.btn.mx-1.addProductSwitch(type="button")
+          i.fas.fa-plus-circle
           |  Add Product
         .form-group.m-auto
           .input-group
@@ -23,27 +23,224 @@ block topbar
             input#searchProduct.form-control(type='text' placeholder='Hammer..')
             .input-group-append
               button#searchProductButton.btn.btn-light(type='button')
-                span.input-group-text
-                  i.fa.fa-search
+                i.fas.fa-search
               
 
 block view
   script. 
     let products = !{JSON.stringify(products)};
-  .animated.fadeIn
+  .animated.fadeIn#stockView
     .row.mt-4
-      .col-lg-12
-        include _table
+      .col-lg-12#tableDiv(style = 'background: #f0f3f5;')
+        #stockTableHeader.d-flex.justify-content-between
+          h3.m-auto Product Stock
+          button#printTableButton.btn(style = 'background-color: white;border-color:green')
+            i.font-2xl.cui-print  
+        include _productTable
+  
+  .animated.fadeIn#shiftView(style = 'display: none')
+    .row.mt-4
+      .col-lg-6(style='background: #f0f3f5;')
+        h3.my-3(style='color: #b5b3b3;font-family: cursive') Select Product to Shift
+        form.form(action='')
+          .form-group
+            .input-group
+              .input-group-prepend
+                span.input-group-text Search
+              input.form-control#shiftProductSearchName(type='text' placeholder='Name..')
+              input.form-control#shiftProductSearchType(type='text' placeholder='Type, Brand..' disabled)
+              input.form-control#shiftProductSearchSize(type='text' placeholder='Size..' disabled)
+          table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light#shiftProductSearchTable
+            thead
+              tr
+                th(style = 'width: 50px') Shift
+                th Name
+                th Type
+                th Brand
+                th Country
+                th Supplier
+                th Size
+                th Quantity
+                th Cost
+            tbody
+      .col-lg-6(style='background: #39b2d529;')
+        h3.my-3(style='color: #065875;font-family: cursive') Product Info
         
-  #exampleModalLong.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLongTitle' aria-hidden='true')
+        form.form(action='' method = 'post' id ='shiftableProductInfoForm')
+          .form-group
+            .input-group
+              .input-group-prepend
+                span.input-group-text Name
+              input.form-control#selectedProductForShift(type='text' placeholder='Name..' disabled required)
+          .row
+            .form-group.col-sm-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text From
+                select#shiftFrom.form-control(type='text' disabled required) 
+            
+            .form-group.col-sm-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text To
+                select#shiftTo.form-control(type='text' required) 
+
+          .row
+            .form-group.col-sm-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Available
+                input#availableAmount.form-control(type='text' disabled required) 
+            
+            .form-group.col-sm-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Move
+                input#moveAmount.form-control(type='number' min = '' required) 
+
+          .alert.alert-danger#errorShifting(role='alert' style= 'display:none')
+            | Can not move more than available!
+
+          .form-actions.d-flex.justify-content-center
+              button.btn.btn-primary.mx-1(type='submit' id = 'moveProductToShiftListButton')  
+                i.font-2xl.fas.fa-long-arrow-alt-down
+        br 
+        #shiftableProductTableDiv(style = 'background: #f0f3f5;')
+          #shiftableProductTableHeader.d-flex.justify-content-between
+            h3.m-auto Shiftable Product Table
+            button#printShiftableTableButton.btn(style = 'background-color: white;border-color:green')
+              i.font-2xl.cui-print
+          table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light#shiftableProductTable
+            thead
+              tr
+                th(style = 'width: 50px') Cancel
+                th Name
+                th Type
+                th Brand
+                th Country
+                th Supplier
+                th Size
+                th Available
+                th Move
+                th From
+                th To
+            tbody
+        .d-flex.justify-content-center.my-2
+          button#cancelShiftingButton.btn.btn-secondary.mx-1(type='button') Cancel        
+          button.btn.btn-primary.mx-1#shiftProductButton(type='button') Shift All
+  
+  .animated.fadeIn#addView(style = 'display: none')
+    .row.mt-4
+      .col-lg-6(style='background: #f0f3f5;')
+        h3.my-3(style='color: #b5b3b3;font-family: cursive') Add New Products
+        form.form(action='' id = 'newProductForm')
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Name
+                input#newProductName.form-control(type='text' required value = 'Screw Driver')
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Type
+                input#newProductType.form-control(type='text' value = 'Claw')
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Brand
+                input#newProductBrand.form-control(type='text' value = 'Friend') 
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Country
+                input#newProductCountry.form-control(type='text' value = 'Bangladesh')
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Supplier
+                select#newSupplierSelect.form-control(required value = 'Titu vai')
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Cost
+                input#newProductCost.form-control(type='number' min = '0' required value = '100')
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Date
+                input#newProductDate.form-control(type='date' required value = '2019-10-20')
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Place
+                select#newProductPlaceSelect.form-control(type = 'text' value = 'G-1' required)
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Size
+                input#newProductSize.form-control(type='text' value = '10')
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Quantity
+                input#newProductQuantity.form-control(type='number' min='0' value = '100' required)
+            .form-group.mx-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Unit
+                input#newProductUnit.form-control(type='text' required value = 'inch')
+            .form-actions.d-flex.justify-content-center
+              button.btn.btn-primary.my-2(type='submit')
+                i.font-2xl.fas.fa-long-arrow-alt-right
+  
+      .col-lg-6(style='background: #39b2d529;')
+        h3.my-3(style='color: #065875;font-family: cursive') Additional Expense
+        form.form(action='' method='post' id = 'addProductForm')
+          .form-group.mx-5
+            .input-group
+              .input-group-prepend
+                span.input-group-text Amount
+              input#newProductAdditionalExpense.form-control(type='text')
+          .form-group.mx-5
+            .input-group
+              .input-group-prepend
+                span.input-group-text Expense From
+              input.form-control(type='text')
+          .form-actions.d-flex.justify-content-center
+            button.btn.btn-primary.my-2(type='submit' data-product_id = -1) Add All
+  
+        br
+        #newProductsTableDiv(style = 'background: #f0f3f5;')
+          #newProductsTableHeader.d-flex.justify-content-between
+            h3.m-auto New Products Table
+            button#printNewProductsTableButton.btn(style = 'background-color: white;border-color:green')
+              i.font-2xl.cui-print
+          table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light#newProductsTable
+            thead
+              tr
+                th(style = 'width: 50px') Cancel
+                th Name
+                th Type
+                th Brand
+                th Country
+                th Supplier
+                th Size
+                th Quantity
+                th Cost
+                th Place
+                th Date
+            tbody
+        
+
+  #updateProductModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='updateProductModalTitle' aria-hidden='true')
     .modal-dialog(role='document')
       .modal-content
         .modal-header
-          h5#exampleModalLongTitle.modal-title Add Product
+          h5#updateProductModalTitle.modal-title Update Product
           button.modal_close_btn.close(type='button' data-dismiss='modal' aria-label='Close')
             span(aria-hidden='true') &times;
         .modal-body
-          form.form(action='' method='post' id = 'add_product_form')
+          form.form(action='' method='post' id = 'updateProductForm')
             .form-group
               .input-group
                 .input-group-prepend
@@ -101,8 +298,9 @@ block view
                 input#product_unit.form-control(type='text' required)
             .form-actions.d-flex.justify-content-center
               button.modal_close_btn.btn.btn-secondary.mx-1(type='button' data-dismiss='modal') Cancel        
-              button.btn.btn-primary.mx-1(type='submit' id = "product_save_btn" data-product_id = -1) Add
+              button.btn.btn-primary.mx-1(type='submit' id = "updateProductButton" data-product_id = -1) Update
               button#deleteProductButton.btn.btn-danger.mx-1(type = 'button')
                 i.cui-trash.font-2xl
-  script(src='js/add_product.js')
+  
+  script(src='js/product.js')
   

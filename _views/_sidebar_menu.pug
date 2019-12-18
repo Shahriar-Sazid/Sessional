@@ -1,0 +1,24 @@
+.sidebar
+  nav.sidebar-nav
+    ul.nav
+      if !starter
+        li.nav-title
+          |  Menu
+        li.nav-item.nav-dropdown
+          a.nav-link.nav-dropdown-toggle(href="#")
+            i.nav-icon.fas.fa-tools
+            |  Product
+          ul.nav-dropdown-items
+            li.nav-item
+              a.nav-link#viewProductSwitch
+                i.nav-icon.fa.fa-list
+                |  View
+            li.nav-item
+              a.nav-link.addProductSwitch
+                i.nav-icon.fa.fa-plus-circle
+                |  Add
+            li.nav-item
+              a.nav-link.shiftProductSwitch
+                i.nav-icon.fa.fa-exchange
+                |  Shift
+  button.sidebar-minimizer(type="button")

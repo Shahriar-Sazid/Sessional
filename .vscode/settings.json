@@ -1,4 +1,9 @@
 {
     "editor.formatOnSave": true,
-    "git.decorations.enabled": false
+    "git.decorations.enabled": false,
+    "favorites.resources": [
+        "app.js",
+        "_views\\product.pug",
+        "src\\js\\product.js"
+    ]
 }

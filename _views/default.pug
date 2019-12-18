@@ -7,15 +7,12 @@ html(lang='en')
     base(href=base)
     include _head.pug
     block styles
-  body.app.header-fixed.sidebar-fixed.aside-menu-fixed.sidebar-lg-show
-    include _header.pug
+  body.app.sidebar-fixed.header-fixed.aside-menu-fixed.sidebar-lg-show
+    include _header_new.pug
     .app-body
-      include _sidebar.pug
+      include _sidebar_menu.pug
       main(class='main')
         block topbar
         .container-fluid
           block view
-
-      include _aside.pug
     include _footer.pug
-    //- include _scripts.pug

@@ -1,0 +1,89 @@
+extends /default.pug
+block topbar
+  ol.breadcrumb
+    li.breadcrumb-item Home
+    if !starter
+      li.breadcrumb-item
+        a(href="#") #{page}
+    // Breadcrumb Menu
+    li.breadcrumb-menu.d-md-down-none
+      .btn-group(role="group" aria-label="Button group")
+        button.btn(type="button" id = "addCustomerButton" data-toggle="modal" data-target="#addCustomerModal")
+          i.fa.fa-plus-circle
+          |  Add Customer
+        .form-group.m-auto
+          .input-group
+            .input-group-prepend
+              select#searchBy.form-control(placeholder = 'Search by' required)
+                option Name
+                option Brand
+                option Country
+                option Supplier
+                option Place
+            input#searchCustomer.form-control(type='text' placeholder='Titu vai..')
+            .input-group-append
+              button#searchCustomerButton.btn.btn-light(type='button')
+                span.input-group-text
+                  i.fa.fa-search
+              
+
+block view
+  script. 
+    let customers = !{JSON.stringify(customers)};
+  .animated.fadeIn
+    .row.mt-4
+      .col-lg-12
+        include _customerTable
+        
+  #addCustomerModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='addCustomerModalTitle' aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5#addCustomerModalTitle.modal-title Add Customer
+          button.modal_close_btn.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+          form.form(action='' method='post' id = 'addCustomerForm')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Name
+                input#customerName.form-control(type='text' required)
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Company
+                input#customerCompany.form-control(type='text')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Address
+                input#customerAddress.form-control(type='text')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Mobile No(1)
+                input#customerMobile1.form-control(type='number' required)
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Mobile No(2)
+                input#customerMobile2.form-control(type='number')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Telephone  
+                input#customerTelephone.form-control(type='number')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Email
+                input#customerEmail.form-control(type='email')
+            .form-actions.d-flex.justify-content-center
+              button.modal_close_btn.btn.btn-secondary.mx-1(type='button' data-dismiss='modal') Cancel        
+              button.btn.btn-primary.mx-1(type='submit' id = "customerSaveButton") Add
+              button#deleteCustomerButton.btn.btn-danger.mx-1(type = 'button')
+                i.cui-trash.font-2xl
+  
+  script(src='js/customer.js')
+  
