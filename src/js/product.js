@@ -2,6 +2,25 @@
 /* eslint-disable no-undef */
 /*eslint-env browser*/
 
+const setupMode = () => {
+  const stockView = $('#stockView');
+  const shiftView = $('#shiftView');
+  const addView = $('#addView');
+  if (mode === 'view') {
+    shiftView.hide();
+    addView.hide();
+    stockView.show();
+  } else if (mode === 'add') {
+    stockView.hide();
+    shiftView.hide();
+    addView.show();
+  } else {
+    stockView.hide();
+    addView.hide();
+    shiftView.show();
+  }
+};
+
 const setupSupplierAndGodown = async () => {
   let supplierNames;
   let godownNames;
@@ -80,28 +99,6 @@ const setupSupplierAndGodown = async () => {
   shiftToOptions.value = '';
   newSupplierOptions.value = '';
   newGodownOptions.value = '';
-};
-
-const setupBar = () => {
-  const stockView = $('#stockView');
-  const shiftView = $('#shiftView');
-  const addView = $('#addView');
-
-  $(document).on('click', '#viewProductSwitch', () => {
-    window.location.reload(true);
-  });
-
-  $(document).on('click', '.addProductSwitch', () => {
-    shiftView.hide();
-    stockView.hide();
-    addView.show();
-  });
-
-  $(document).on('click', '.shiftProductSwitch', () => {
-    stockView.hide();
-    addView.hide();
-    shiftView.show();
-  });
 };
 
 const addProduct = () => {
@@ -689,8 +686,8 @@ const shiftProduct = () => {
   printShiftableProductTable();
 };
 
+setupMode();
 setupSupplierAndGodown();
-setupBar();
 
 addProduct();
 updateProduct();

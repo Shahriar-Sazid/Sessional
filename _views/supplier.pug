@@ -1,13 +1,13 @@
 extends /default.pug
 block topbar
   ol.breadcrumb
-    h2(style='font-family: cursive;font-weight: bold;') Customer
+    h2(style='font-family: cursive;font-weight: bold;') Supplier
     // Breadcrumb Menu
     li.breadcrumb-menu.d-md-down-none
       .btn-group(role="group" aria-label="Button group")
-        button.btn.addCustomerSwitch(type="button")
+        button.btn.addSupplierSwitch(type="button")
           i.fa.fa-plus-circle
-          |  Add Customer
+          |  Add Supplier
         .form-group.m-auto
           .input-group
             .input-group-prepend
@@ -15,77 +15,77 @@ block topbar
                 option Name
                 option Mobile
                 option Address
-            input#searchCustomerInput.form-control(type='text' placeholder='Titu vai..')
+            input#searchSupplierInput.form-control(type='text' placeholder='Titu vai..')
             .input-group-append
-              button#searchCustomerButton.btn.btn-light(type='button')
+              button#searchSupplierButton.btn.btn-light(type='button')
                 span.input-group-text
                   i.fas.fa-search
               
 
 block view
-  script(src='js/pugCustomerTable.js')
+  script(src='js/pugSupplierTable.js')
   script. 
-    let customers = !{JSON.stringify(customers)};
+    let suppliers = !{JSON.stringify(suppliers)};
     const mode = !{JSON.stringify(mode)};
 
   .animated.fadeIn
     .row.mt-4
       .col-lg-12#tableDiv(style = 'background: #f0f3f5;')
         #stockTableHeader.d-flex.justify-content-between
-          h3.m-auto Customer
+          h3.m-auto Supplier
           button#printTableButton.btn(style = 'background-color: white;border-color:green')
             i.font-2xl.cui-print
-        include _customerTable
+        include _supplierTable
         
-  #addCustomerModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='addCustomerModalTitle' aria-hidden='true')
+  #addSupplierModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='addSupplierModalTitle' aria-hidden='true')
     .modal-dialog(role='document')
       .modal-content
         .modal-header
-          h5#addCustomerModalTitle.modal-title Add Customer
+          h5#addSupplierModalTitle.modal-title Add Supplier
           button.modal_close_btn.close(type='button' data-dismiss='modal' aria-label='Close')
             span(aria-hidden='true') &times;
         .modal-body
-          form.form(action='' method='post' id = 'addCustomerForm')
+          form.form(action='' method='post' id = 'addSupplierForm')
             .form-group
               .input-group
                 .input-group-prepend
                   span.input-group-text Name
-                input#customerName.form-control(type='text' required)
+                input#supplierName.form-control(type='text' required)
             .form-group
               .input-group
                 .input-group-prepend
                   span.input-group-text Company
-                input#customerCompany.form-control(type='text')
+                input#supplierCompany.form-control(type='text')
             .form-group
               .input-group
                 .input-group-prepend
                   span.input-group-text Address
-                input#customerAddress.form-control(type='text')
+                input#supplierAddress.form-control(type='text')
             .form-group
               .input-group
                 .input-group-prepend
                   span.input-group-text Mobile No(1)
-                input#customerMobile1.form-control(type='text' required)
+                input#supplierMobile1.form-control(type='text' required)
             .form-group
               .input-group
                 .input-group-prepend
                   span.input-group-text Mobile No(2)
-                input#customerMobile2.form-control(type='text')
+                input#supplierMobile2.form-control(type='text')
             .form-group
               .input-group
                 .input-group-prepend
                   span.input-group-text Telephone  
-                input#customerTelephone.form-control(type='text')
+                input#supplierTelephone.form-control(type='text')
             .form-group
               .input-group
                 .input-group-prepend
                   span.input-group-text Email
-                input#customerEmail.form-control(type='email')
-            .alert.alert-danger#errorAddCustomer(role='alert' style= 'display:none')
-              | Customer Name exists!
+                input#supplierEmail.form-control(type='email')
+            .alert.alert-danger#errorAddSupplier(role='alert' style= 'display:none')
+              | Supplier Name exists!
             .form-actions.d-flex.justify-content-center
               button.modal_close_btn.btn.btn-secondary.mx-1(type='button' data-dismiss='modal') Cancel        
-              button.btn.btn-primary.mx-1(type='submit' id = "customerSaveButton") Add
+              button.btn.btn-primary.mx-1(type='submit' id = "supplierSaveButton") Add
   
-  script(src='js/customer.js')
+  script(src='js/supplier.js')
   

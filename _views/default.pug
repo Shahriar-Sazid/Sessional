@@ -8,6 +8,8 @@ html(lang='en')
     include _head.pug
     block styles
   body.app.sidebar-fixed.header-fixed.aside-menu-fixed.sidebar-lg-show
+    script. 
+      let page = !{JSON.stringify(page)};
     include _header_new.pug
     .app-body
       include _sidebar_menu.pug
@@ -16,3 +18,4 @@ html(lang='en')
         .container-fluid
           block view
     include _footer.pug
+    script(src = 'js/_sidebar_menu.js')

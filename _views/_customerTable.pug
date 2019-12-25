@@ -1,0 +1,24 @@
+table#customerTable.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light
+  thead
+    tr
+      th(style='width:50px;') Edit
+      th Name
+      th Company
+      th Address
+      th Mobile No(1)
+      th Mobile No(2)
+      th Telephone
+      th Email
+  tbody
+    for customer in customers
+      tr
+        td
+          button.updateCustomerButton.btn.btn-light(type="button" data-toggle="modal" data-target="#addCustomerModal" data-customerName=customer.customer_name)
+            i.cui-pencil
+        td #{customer.customer_name}
+        td #{customer.company_name}
+        td #{customer.address}
+        td #{customer.mobile_no_1}
+        td #{customer.mobile_no_2}
+        td #{customer.telephone_no}
+        td #{customer.email}

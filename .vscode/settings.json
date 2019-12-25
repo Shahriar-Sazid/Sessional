@@ -4,6 +4,8 @@
     "favorites.resources": [
         "app.js",
         "_views\\product.pug",
-        "src\\js\\product.js"
+        "src\\js\\product.js",
+        "src\\js\\customer.js",
+        "_views\\customer.pug"
     ]
 }

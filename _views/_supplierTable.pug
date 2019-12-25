@@ -1,0 +1,24 @@
+table#supplierTable.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light
+  thead
+    tr
+      th(style='width:50px;') Edit
+      th Name
+      th Company
+      th Address
+      th Mobile No(1)
+      th Mobile No(2)
+      th Telephone
+      th Email
+  tbody
+    for supplier in suppliers
+      tr
+        td
+          button.updateSupplierButton.btn.btn-light(type="button" data-toggle="modal" data-target="#addSupplierModal" data-supplierName=supplier.supplier_name)
+            i.cui-pencil
+        td #{supplier.supplier_name}
+        td #{supplier.company_name}
+        td #{supplier.address}
+        td #{supplier.mobile_no_1}
+        td #{supplier.mobile_no_2}
+        td #{supplier.telephone_no}
+        td #{supplier.email}
