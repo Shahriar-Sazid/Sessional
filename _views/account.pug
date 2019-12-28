@@ -1,0 +1,80 @@
+extends /default.pug
+block topbar
+  ol.breadcrumb
+    h2(style='font-family: cursive;font-weight: bold;') Account
+    // Breadcrumb Menu
+    li.breadcrumb-menu.d-md-down-none
+      .btn-group(role="group" aria-label="Button group")
+        button.btn.addAccountSwitch(type="button")
+          i.fa.fa-plus-circle
+          |  Add Account
+        .form-group.m-auto
+          .input-group
+            .input-group-prepend
+              select#searchBy.form-control(required)
+                option Name
+                option Bank
+            input#searchAccountInput.form-control(type='text' placeholder='Titu vai..')
+            .input-group-append
+              button#searchAccountButton.btn.btn-light(type='button')
+                span.input-group-text
+                  i.fas.fa-search
+              
+
+block view
+  script(src='js/pugAccountTable.js')
+  script. 
+    let accounts = !{JSON.stringify(accounts)};
+    const mode = !{JSON.stringify(mode)};
+
+  .animated.fadeIn
+    .row.mt-4
+      .col-lg-12#tableDiv(style = 'background: #f0f3f5;')
+        #stockTableHeader.d-flex.justify-content-between
+          h3.m-auto Account
+          button#printTableButton.btn(style = 'background-color: white;border-color:green')
+            i.font-2xl.cui-print
+        include _accountTable
+        
+  #addAccountModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='addAccountModalTitle' aria-hidden='true')
+    .modal-dialog(role='document')
+      .modal-content
+        .modal-header
+          h5#addAccountModalTitle.modal-title Add Account
+          button.modal_close_btn.close(type='button' data-dismiss='modal' aria-label='Close')
+            span(aria-hidden='true') &times;
+        .modal-body
+          form.form(action='' method='post' id = 'addAccountForm')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Name
+                input#accountName.form-control(type='text' required)
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Account No
+                input#accountNo.form-control(type='text')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Account Holder
+                input#holderName.form-control(type='text')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Bank
+                input#accountBank.form-control(type='text')
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Branch 
+                input#accountBranch.form-control(type='text')
+            .alert.alert-danger#errorAddAccount(role='alert' style= 'display:none')
+              | Account Name exists!
+            .form-actions.d-flex.justify-content-center
+              button.modal_close_btn.btn.btn-secondary.mx-1(type='button' data-dismiss='modal') Cancel        
+              button.btn.btn-primary.mx-1(type='submit' id = "accountSaveButton") Add
+  
+  script(src='js/account.js')
+  

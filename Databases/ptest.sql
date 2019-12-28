@@ -70,3 +70,11 @@ CREATE TABLE godown(
   godown_name varchar(30) PRIMARY KEY,
   address varchar(60)
 );
+
+CREATE TABLE account(
+  account_name varchar(50) PRIMARY KEY,
+  holder_name varchar(50),
+  bank varchar(30),
+  branch varchar(30),
+  account_no varchar(50)
+);

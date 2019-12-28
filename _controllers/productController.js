@@ -1,7 +1,6 @@
 const product = require('../_model/productModel');
 
 module.exports.addProducts = (req, res) => {
-  console.log('request received!');
   const { newProductsList } = req.body;
   for (let i = 0; i < newProductsList.length; i += 1) {
     product.addProduct(newProductsList[i], message => {

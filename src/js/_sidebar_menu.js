@@ -37,7 +37,7 @@ const setupBar = () => {
 
   const setupCustomerSwitch = () => {
     $(document).on('click', '#viewCustomerSwitch', () => {
-      window.location.assign('http://127.0.0.1:3000/supplier?mode=view');
+      window.location.assign('http://127.0.0.1:3000/customer?mode=view');
     });
 
     $(document).on('click', '.addCustomerSwitch', () => {
@@ -55,7 +55,7 @@ const setupBar = () => {
         const addCustomerModal = $('#addCustomerModal');
         addCustomerModal.modal('show');
       } else {
-        window.location.assign('http://127.0.0.1:3000/supplier?mode=add');
+        window.location.assign('http://127.0.0.1:3000/customer?mode=add');
       }
     });
   };
@@ -84,9 +84,61 @@ const setupBar = () => {
       }
     });
   };
+
+  const setupGodownSwitch = () => {
+    $(document).on('click', '#viewGodownSwitch', () => {
+      window.location.assign('http://127.0.0.1:3000/godown?mode=view');
+    });
+
+    $(document).on('click', '.addGodownSwitch', () => {
+      if (page === 'Godown') {
+        const setupAddModal = () => {
+          const modalTitle = $('#addGodownModalTitle');
+          const addButton = $('#godownSaveButton');
+
+          modalTitle.html('Add Godown');
+          addButton.html('Add');
+
+          addButton.attr('disabled', false);
+        };
+        setupAddModal();
+        const addGodownModal = $('#addGodownModal');
+        addGodownModal.modal('show');
+      } else {
+        window.location.assign('http://127.0.0.1:3000/godown?mode=add');
+      }
+    });
+  };
+
+  const setupAccountSwitch = () => {
+    $(document).on('click', '#viewAccountSwitch', () => {
+      window.location.assign('http://127.0.0.1:3000/account?mode=view');
+    });
+
+    $(document).on('click', '.addAccountSwitch', () => {
+      if (page === 'Account') {
+        const setupAddModal = () => {
+          const modalTitle = $('#addAccountModalTitle');
+          const addButton = $('#accountSaveButton');
+
+          modalTitle.html('Add Account');
+          addButton.html('Add');
+
+          addButton.attr('disabled', false);
+        };
+        setupAddModal();
+        const addAccountModal = $('#addAccountModal');
+        addAccountModal.modal('show');
+      } else {
+        window.location.assign('http://127.0.0.1:3000/account?mode=add');
+      }
+    });
+  };
   setupProductSwitch();
   setupCustomerSwitch();
   setupSupplierSwitch();
+  setupGodownSwitch();
+  setupAccountSwitch();
 };
 
 setupBar();

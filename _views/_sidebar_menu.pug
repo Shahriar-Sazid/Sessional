@@ -9,44 +9,40 @@
             i.nav-icon.fas.fa-tools
             |  Product
           ul.nav-dropdown-items
-            li.nav-item
+            li.nav-item(style='background-color: #1b1f3a8c;')
               a.nav-link#viewProductSwitch
                 i.nav-icon.fa.fa-list
                 |  View
-            li.nav-item
+            li.nav-item(style='background-color: #1b1f3a8c;')
               a.nav-link.addProductSwitch
                 i.nav-icon.fa.fa-plus-circle
                 |  Add
-            li.nav-item
+            li.nav-item(style='background-color: #1b1f3a8c;')
               a.nav-link.shiftProductSwitch
                 i.nav-icon.fa.fa-exchange
                 |  Shift
         
-        li.nav-item.nav-dropdown
-          a.nav-link.nav-dropdown-toggle(href="#")
+        
+
+        li.nav-item
+          a.nav-link#viewCustomerSwitch
             i.nav-icon.fas.fa-person-booth
             |  Customer
-          ul.nav-dropdown-items
-            li.nav-item
-              a.nav-link#viewCustomerSwitch
-                i.nav-icon.fa.fa-list
-                |  View
-            li.nav-item
-              a.nav-link.addCustomerSwitch
-                i.nav-icon.fa.fa-plus-circle
-                |  Add
         
-        li.nav-item.nav-dropdown
-          a.nav-link.nav-dropdown-toggle(href="#")
+        li.nav-item
+          a.nav-link#viewSupplierSwitch
             i.nav-icon.fas.fa-people-carry
             |  Supplier
-          ul.nav-dropdown-items
-            li.nav-item
-              a.nav-link#viewSupplierSwitch
-                i.nav-icon.fa.fa-list
-                |  View
-            li.nav-item
-              a.nav-link.addSupplierSwitch
-                i.nav-icon.fa.fa-plus-circle
-                |  Add
+        
+        li.nav-item
+          a.nav-link#viewGodownSwitch
+            i.nav-icon.fas.fa-warehouse
+            |  Godown
+        
+        li.nav-item
+          a.nav-link#viewAccountSwitch
+            i.nav-icon.fas.fa-hand-holding-usd
+            |  Account
+        
+        
   button.sidebar-minimizer(type="button")

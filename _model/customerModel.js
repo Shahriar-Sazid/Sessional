@@ -26,7 +26,6 @@ module.exports.getAllCustomer = async callback => {
 };
 
 module.exports.addCustomer = async (customer, callback) => {
-  console.log('adding');
   const query = {
     text: `insert into customer 
       (customer_name, company_name, address, mobile_no_1, mobile_no_2, telephone_no, email) 

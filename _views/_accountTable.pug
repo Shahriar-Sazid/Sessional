@@ -1,0 +1,20 @@
+table#accountTable.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light
+  thead
+    tr
+      th(style='width:50px;') Edit
+      th Name
+      th Account No 
+      th Account Holder 
+      th Bank
+      th Branch
+  tbody
+    for account in accounts
+      tr
+        td
+          button.updateAccountButton.btn.btn-light(type="button" data-toggle="modal" data-target="#addAccountModal" data-accountName=account.account_name)
+            i.cui-pencil
+        td #{account.account_name}
+        td #{account.account_no}
+        td #{account.holder_name}
+        td #{account.bank}
+        td #{account.branch}

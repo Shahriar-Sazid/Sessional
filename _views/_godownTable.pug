@@ -1,0 +1,15 @@
+table#godownTable.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light
+  thead
+    tr
+      th(style='width:50px;') Edit
+      th Name
+      th Address
+      
+  tbody
+    for godown in godowns
+      tr
+        td
+          button.updateGodownButton.btn.btn-light(type="button" data-toggle="modal" data-target="#addGodownModal" data-godownName=godown.godown_name)
+            i.cui-pencil
+        td #{godown.godown_name}
+        td #{godown.address}

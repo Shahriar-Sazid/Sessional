@@ -37,7 +37,6 @@ module.exports.getAllSupplier = async callback => {
 };
 
 module.exports.addSupplier = async (supplier, callback) => {
-  console.log('adding');
   const query = {
     text: `insert into supplier 
       (supplier_name, company_name, address, mobile_no_1, mobile_no_2, telephone_no, email) 
