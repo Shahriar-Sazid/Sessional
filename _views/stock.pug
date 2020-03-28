@@ -1,0 +1,144 @@
+extends /default.pug
+block topbar
+  ol.breadcrumb
+    h2(style='font-family: cursive;font-weight: bold;') Stock
+    // Breadcrumb Menu
+    li.breadcrumb-menu.d-md-down-none
+      .btn-group(role="group" aria-label="Button group")
+        button.btn.mx-1#viewShiftStockButton(type="button")
+          i.fas.fa-exchange-alt
+            | Shift Stock
+        button.btn.mx-1#addStockButton(type="button")
+          i.fas.fa-plus-circle
+           | Add Stock
+        .form-group.m-auto
+          .input-group
+            .input-group-prepend
+              select#searchBy.form-control(placeholder = 'Search by' required)
+                option Name
+                option Brand
+                option Country
+                option Supplier
+                option Place
+            input#searchStockInput.form-control(type='text' placeholder='Hammer..')
+            .input-group-append
+              button#searchStockButton.btn.btn-light(type='button')
+                i.fas.fa-search
+              
+
+block view
+  script(src='js/shop/pugStockTable.js')
+  script. 
+    let products = !{JSON.stringify(products)};
+    let stock = !{JSON.stringify(stock)}
+  .animated.fadeIn#stockView
+    .row.mt-4
+      .col-lg-12#tableDiv(style = 'background: #f0f3f5;')
+        #stockTableHeader.d-flex.justify-content-between
+          h3.m-auto Stock
+          button#printTableButton.btn(style = 'background-color: white;border-color:green')
+            i.font-2xl.cui-print  
+        include _stockTable
+  
+  .animated.fadeIn#shiftView(style = 'display: none')
+    .row.mt-4
+      .col-lg-6(style='background: #f0f3f5;')
+        h3.my-3(style='color: #b5b3b3;font-family: cursive') Select Product to Shift
+        form.form(action='')
+          .form-group
+            .input-group
+              .input-group-prepend
+                span.input-group-text Search
+              input.form-control#shiftStockSearchName(type='text' placeholder='Name..')
+              input.form-control#shiftStockSearchType(type='text' placeholder='Type, Brand..' disabled)
+              input.form-control#shiftStockSearchSize(type='text' placeholder='Size..' disabled)
+          table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light#shiftStockSearchTable
+            thead
+              tr
+                th(style = 'width: 50px') Shift
+                th Name
+                th Type
+                th Brand
+                th Country
+                th Supplier
+                th Size
+                th Quantity
+                th Place
+                th Cost
+            tbody
+      .col-lg-6(style='background: #39b2d529;')
+        h3.my-3(style='color: #065875;font-family: cursive') Stock Info
+        
+        form.form(action='' method = 'post' id ='shiftableStockInfoForm')
+          .form-group
+            .input-group
+              .input-group-prepend
+                span.input-group-text Name
+              input.form-control#selectedStockForShift(type='text' placeholder='Name..' disabled required)
+          .row
+            .form-group.col-sm-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text From
+                input#shiftFrom.form-control(type='text' disabled required) 
+            
+            .form-group.col-sm-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text To
+                select#shiftTo.form-control(type='text' required) 
+            
+            
+
+          .row
+            .form-group.col-sm-5
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Available
+                input#availableAmount.form-control(type='text' disabled required) 
+            
+            .form-group.col-sm-4
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Move
+                input#moveAmount.form-control(type='number' required) 
+
+            .form-group.col-sm-3
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Unit
+                select#shiftingUnit.form-control(type='text' required)
+
+          .alert.alert-danger#errorShifting(role='alert' style= 'display:none')
+            | Can not move more than available!
+
+          .form-actions.d-flex.justify-content-center
+              button.btn.btn-primary.mx-1(type='submit' id = 'moveStockToShiftListButton')  
+                i.font-2xl.fas.fa-long-arrow-alt-down
+        br 
+        #shiftableStockTableDiv(style = 'background: #f0f3f5;')
+          #shiftableStockTableHeader.d-flex.justify-content-between
+            h3.m-auto Shiftable Stock Table
+            button#printShiftableTableButton.btn(style = 'background-color: white;border-color:green')
+              i.font-2xl.cui-print
+          table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light#shiftableStockTable
+            thead
+              tr
+                th(style = 'width: 50px') Cancel
+                th Name
+                th Type
+                th Brand
+                th Country
+                th Supplier
+                th Size
+                th Available
+                th Move
+                th From
+                th To
+            tbody
+        .d-flex.justify-content-center.my-2
+          button#cancelShiftingButton.btn.btn-secondary.mx-1(type='button') Cancel        
+          button.btn.btn-primary.mx-1#shiftStockButton(type='button') Shift All
+  
+  script(src='js/shop/stock.js')
+  

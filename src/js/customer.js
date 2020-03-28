@@ -2,13 +2,6 @@
 /* eslint-disable no-undef */
 /*eslint-env browser*/
 
-const setupMode = () => {
-  if (mode === 'add') {
-    const addCustomerModal = $('#addCustomerModal');
-    addCustomerModal.modal('show');
-  }
-};
-
 const addOrUpdateCustomer = () => {
   const modalTitle = $('#addCustomerModalTitle');
   const addCustomerForm = $('#addCustomerForm');
@@ -22,6 +15,20 @@ const addOrUpdateCustomer = () => {
     addButton.html('Update');
     addButton.attr('disabled', true);
   };
+
+  $(document).on('click', '.addCustomerButton', () => {
+    if (page === 'Customer') {
+      const setupAddModal = () => {
+        modalTitle.html('Add Customer');
+        addButton.html('Add');
+
+        addButton.attr('disabled', false);
+      };
+      setupAddModal();
+      const addCustomerModal = $('#addCustomerModal');
+      addCustomerModal.modal('show');
+    }
+  });
 
   const fillForm = btn => {
     const customerName = btn.dataset.customername;
@@ -221,8 +228,6 @@ const searchCustomer = () => {
     }
   });
 };
-
-setupMode();
 
 addOrUpdateCustomer();
 searchCustomer();

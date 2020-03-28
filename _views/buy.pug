@@ -1,0 +1,145 @@
+extends /default.pug
+block topbar
+  ol.breadcrumb
+    h2(style='font-family: cursive;font-weight: bold;') Buy
+
+block view
+  script. 
+    let products = !{JSON.stringify(products)};
+
+  .animated.fadeIn#addView
+    .row.mt-4
+      .col-lg-6(style='background: #f0f3f5;')
+        h3.my-3(style='color: #b5b3b3;font-family: cursive') Select Product to Buy
+        form.form(action='')
+          .form-group
+            .input-group
+              .input-group-prepend
+                span.input-group-text Search
+              input.form-control#buyProductSearchName(type='text' placeholder='Name..')
+              input.form-control#buyProductSearchType(type='text' placeholder='Type, Brand..' disabled)
+              input.form-control#buyProductSearchSize(type='text' placeholder='Size..' disabled)
+        table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light#buyProductSearchTable
+          thead
+            tr
+              th(style = 'width: 50px') Buy
+              th Name
+              th Type
+              th Brand
+              th Country
+              th Size
+          tbody
+
+        h3.my-3(style='color: #b5b3b3;font-family: cursive') Buy Products
+        form.form(action='' id = 'newProductForm')
+          .row
+            .form-group.col-6
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Supplier
+                select#newProductSupplierSelect.form-control(required)
+            .form-group.col-6
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Date
+                input#newProductDate.form-control(type='date' required)
+          
+          .row
+            .form-group.col-6
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Name
+                input#newProductName.form-control(type='text' required disabled)
+            .form-group.col-6
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Type
+                input#newProductType.form-control(type='text' disabled)
+          
+          .row
+            .form-group.col-6
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Brand
+                input#newProductBrand.form-control(type='text' disabled)
+            .form-group.col-6
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Country
+                input#newProductCountry.form-control(type='text' disabled)
+          
+          .row
+            .form-group.col-6
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Size
+                input#newProductSize.form-control(type='text' disabled)
+            .form-group.col-6
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Cost
+                input#newProductCost.form-control(type='number' min = '0' required)
+                
+          
+          .row
+            .form-group.col-5
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Place
+                select#newProductPlaceSelect.form-control(type = 'text' required)
+              
+            .form-group.col-4
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Quantity
+                input#newProductQuantity.form-control(type='number' min='0' required)
+
+            .form-group.col-3
+              .input-group(style = 'border: 1px solid #00000042;')
+                .input-group-prepend
+                  span.input-group-text Unit
+                select#newProductUnit.form-control(type='text' required)
+          
+          .form-actions.d-flex.justify-content-center
+            button.btn.btn-primary.my-2#buyNewProductButton(type='submit' data-id = -1)
+              i.font-2xl.fas.fa-long-arrow-alt-right
+  
+      .col-lg-6(style='background: #39b2d529;')
+        h3.my-3(style='color: #065875;font-family: cursive') Additional Expense
+        form.form(action='' method='post' id = 'addProductForm')
+          .form-group.mx-5
+            .input-group
+              .input-group-prepend
+                span.input-group-text Amount
+              input#newProductAdditionalExpense.form-control(type='text')
+          .form-group.mx-5
+            .input-group
+              .input-group-prepend
+                span.input-group-text Expense From
+              input.form-control(type='text')
+          .form-actions.d-flex.justify-content-center
+            button.btn.btn-primary.my-2(type='submit') Add All
+  
+        br
+        #newProductsTableDiv(style = 'background: #f0f3f5;')
+          #newProductsTableHeader.d-flex.justify-content-between
+            h3.m-auto New Products Table
+            button#printNewProductsTableButton.btn(style = 'background-color: white;border-color:green')
+              i.font-2xl.cui-print
+          table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light#newProductsTable
+            thead
+              tr
+                th(style = 'width: 50px') Cancel
+                th Name
+                th Type
+                th Brand
+                th Country
+                th Supplier
+                th Size
+                th Quantity
+                th Cost
+                th Place
+                th Date
+            tbody
+        
+  script(src='js/shop/buy.js')

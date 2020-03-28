@@ -8,4 +8,6 @@ router
   .post(accountController.addAccount)
   .patch(accountController.updateAccount);
 
+router.get('/name', accountController.getAccountName);
+
 module.exports = router;

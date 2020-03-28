@@ -2,13 +2,6 @@
 /* eslint-disable no-undef */
 /*eslint-env browser*/
 
-const setupMode = () => {
-  if (mode === 'add') {
-    const addGodownModal = $('#addGodownModal');
-    addGodownModal.modal('show');
-  }
-};
-
 const addOrUpdateGodown = () => {
   const modalTitle = $('#addGodownModalTitle');
   const addGodownForm = $('#addGodownForm');
@@ -22,6 +15,20 @@ const addOrUpdateGodown = () => {
     addButton.html('Update');
     addButton.attr('disabled', true);
   };
+
+  $(document).on('click', '.addGodownButton', () => {
+    if (page === 'Godown') {
+      const setupAddModal = () => {
+        modalTitle.html('Add Godown');
+        addButton.html('Add');
+
+        addButton.attr('disabled', false);
+      };
+      setupAddModal();
+      const addGodownModal = $('#addGodownModal');
+      addGodownModal.modal('show');
+    }
+  });
 
   const fillForm = btn => {
     const godownName = btn.dataset.godownname;
@@ -195,8 +202,6 @@ const searchGodown = () => {
     }
   });
 };
-
-setupMode();
 
 addOrUpdateGodown();
 searchGodown();

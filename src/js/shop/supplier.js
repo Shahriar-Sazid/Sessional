@@ -2,13 +2,6 @@
 /* eslint-disable no-undef */
 /*eslint-env browser*/
 
-const setupMode = () => {
-  if (mode === 'add') {
-    const addSupplierModal = $('#addSupplierModal');
-    addSupplierModal.modal('show');
-  }
-};
-
 const addOrUpdateSupplier = () => {
   const modalTitle = $('#addSupplierModalTitle');
   const addSupplierForm = $('#addSupplierForm');
@@ -22,6 +15,20 @@ const addOrUpdateSupplier = () => {
     addButton.html('Update');
     addButton.attr('disabled', true);
   };
+
+  $(document).on('click', '.addSupplierButton', () => {
+    if (page === 'Supplier') {
+      const setupAddModal = () => {
+        modalTitle.html('Add Supplier');
+        addButton.html('Add');
+
+        addButton.attr('disabled', false);
+      };
+      setupAddModal();
+      const addSupplierModal = $('#addSupplierModal');
+      addSupplierModal.modal('show');
+    }
+  });
 
   const fillForm = btn => {
     const supplierName = btn.dataset.suppliername;
@@ -221,8 +228,6 @@ const searchSupplier = () => {
     }
   });
 };
-
-setupMode();
 
 addOrUpdateSupplier();
 searchSupplier();

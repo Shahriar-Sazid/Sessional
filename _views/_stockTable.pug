@@ -1,0 +1,30 @@
+table#stockTable.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light
+  thead
+    tr
+      th Name
+      th Type
+      th Brand
+      th Country
+      th Supplier
+      th Size
+      th Quantity
+      th Cost
+      th Place
+      th Date
+  tbody
+    - for( let i = 0; i<stock.length;i++){
+      tr
+        - const idx = products.findIndex(product => product.product_id === stock[i].product_id);
+        td #{products[idx].name}
+        td #{products[idx].type}
+        td #{products[idx].brand}
+        td #{products[idx].country}
+        td #{stock[i].supplier_name}
+        td #{products[idx].size}
+        - const quantity = Number.isInteger(stock[i].quantity)? stock[i].quantity: stock[i].quantity.toFixed(2);
+        td #{`${quantity} ${stock[i].unit}`}
+        td #{stock[i].cost}
+        td #{stock[i].place}
+        - const date = new Date(stock[i].date);
+        td #{date.toISOString().slice(0,10)}
+    - }

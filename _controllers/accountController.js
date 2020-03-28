@@ -17,3 +17,9 @@ module.exports.updateAccount = (req, res) => {
     res.status(200).json({ sent: true, message });
   });
 };
+
+module.exports.getAccountName = (req, res) => {
+  account.getAccountName(accountNameList => {
+    res.status(200).json(accountNameList);
+  });
+};

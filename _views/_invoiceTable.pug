@@ -1,0 +1,15 @@
+table#invoiceTable.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light
+  thead
+    tr
+      th Invoice Id 
+      th Customer Name  
+      th Date  
+      th Profit 
+  tbody
+    for invoice in invoices
+      tr
+        td #{invoice.memo_id}
+        td #{invoice.customer_name}
+        - const date = new Date(invoice.date);
+        td #{date.toISOString().slice(0,10)}
+        td #{invoice.profit}

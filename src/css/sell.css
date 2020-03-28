@@ -1,0 +1,21 @@
+.table-header-item {
+  border: 0 !important;
+  font-weight: bold;
+  font-size: 80%;
+  text-transform: uppercase;
+}
+
+.customer-info > p {
+  margin-bottom: 1px;
+}
+
+.customer-info > p:first-child {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+#printInvoiceButton {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}

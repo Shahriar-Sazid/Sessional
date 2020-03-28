@@ -8,4 +8,7 @@ router
   .post(customerController.addCustomer)
   .patch(customerController.updateCustomer);
 
+router.get('/', customerController.getCustomerData);
+router.get('/name', customerController.getCustomerName);
+
 module.exports = router;

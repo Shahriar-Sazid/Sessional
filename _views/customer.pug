@@ -5,7 +5,7 @@ block topbar
     // Breadcrumb Menu
     li.breadcrumb-menu.d-md-down-none
       .btn-group(role="group" aria-label="Button group")
-        button.btn.addCustomerSwitch(type="button")
+        button.btn.addCustomerButton(type="button" data-toggle = 'modal' data-target='#addCustomerModal')
           i.fa.fa-plus-circle
           |  Add Customer
         .form-group.m-auto
@@ -23,10 +23,9 @@ block topbar
               
 
 block view
-  script(src='js/pugCustomerTable.js')
+  script(src='js/shop/pugCustomerTable.js')
   script. 
     let customers = !{JSON.stringify(customers)};
-    const mode = !{JSON.stringify(mode)};
 
   .animated.fadeIn
     .row.mt-4
@@ -87,5 +86,5 @@ block view
               button.modal_close_btn.btn.btn-secondary.mx-1(type='button' data-dismiss='modal') Cancel        
               button.btn.btn-primary.mx-1(type='submit' id = "customerSaveButton") Add
   
-  script(src='js/customer.js')
+  script(src='js/shop/customer.js')
   

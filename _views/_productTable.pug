@@ -6,27 +6,16 @@ table#productTable.table.table-responsive-sm.table-bordered.table-striped.table-
       th Type
       th Brand
       th Country
-      th Supplier
       th Size
-      th Quantity
-      th Cost
-      th Place
-      th Date
   tbody
     - for( let i = 0; i<products.length;i++){
       tr
         td
-          button.edit_product_btn.btn.btn-light(type="button" data-toggle="modal" data-target="#updateProductModal" data-idx=i data-product_id=products[i].product_id)
+          button.updateProductButton.btn.btn-light(type="button" data-toggle="modal" data-target="#updateProductModal" data-id=products[i].product_id)
             i.cui-pencil
-        td #{products[i].product_name}
+        td #{products[i].name}
         td #{products[i].type}
         td #{products[i].brand}
         td #{products[i].country}
-        td #{products[i].supplier_name}
         td #{products[i].size}
-        td #{`${products[i].quantity} ${products[i].unit}`}
-        td #{products[i].cost}
-        td #{products[i].place}
-        - const date = new Date(products[i].date);
-        td #{date.toISOString().slice(0,10)}
     - }

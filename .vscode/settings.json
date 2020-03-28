@@ -3,9 +3,14 @@
     "git.decorations.enabled": false,
     "favorites.resources": [
         "app.js",
-        "_views\\product.pug",
-        "src\\js\\product.js",
-        "src\\js\\customer.js",
-        "_views\\customer.pug"
-    ]
+        "_controllers",
+        "src\\js\\sell.js",
+        "_views\\sell.pug",
+        "src\\js"
+    ],
+    "git.ignoreLimitWarning": true,
+    "favorites.sortOrder": "ASC",
+    "dimmer.enabled": false,
+    "dimmer.context": 5,
+    "dimmer.opacity": 10
 }

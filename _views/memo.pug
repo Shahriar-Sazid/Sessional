@@ -1,0 +1,107 @@
+extends /default.pug
+block topbar
+  ol.breadcrumb
+    h2(style='font-family: cursive;font-weight: bold;') Memo
+
+block view
+  script. 
+    let products = !{JSON.stringify(products)};
+    const mode = !{JSON.stringify(mode)};
+
+  .animated.fadeIn#newMemoView
+    .row.mt-4
+      .col-lg-5(style='background: #f0f3f5;')
+        h3.my-3(style='color: #b5b3b3;font-family: cursive') Select Product to Sell
+        form.form(action='')
+          .form-group
+            .input-group
+              .input-group-prepend
+                span.input-group-text Search
+              input.form-control#searchNameInput(type='text' placeholder='Name..')
+              input.form-control#searchTypeInput(type='text' placeholder='Type, Brand..' disabled)
+              input.form-control#searchSizeInput(type='text' placeholder='Size..' disabled)
+          table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light#searchTable
+            thead
+              tr
+                th(style = 'width: 50px') Sale
+                th Name
+                th Type
+                th Brand
+                th Country
+                th Supplier
+                th Size
+                th Quantity
+                th Cost
+            tbody
+      .col-lg-2(style='background-color: #1985ac3b')
+        h3.my-3(style='color: #065875;font-family: cursive') Product Info
+      .col-lg-5(style='background: #39b2d529;')
+        h3.my-3(style='color: #065875;font-family: cursive') Memo
+        
+        form.form(action='' method = 'post' id ='shiftableProductInfoForm')
+          .form-group
+            .input-group
+              .input-group-prepend
+                span.input-group-text Name
+              input.form-control#selectedProductForShift(type='text' placeholder='Name..' disabled required)
+          .row
+            .form-group.col-sm-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text From
+                select#shiftFrom.form-control(type='text' disabled required) 
+            
+            .form-group.col-sm-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text To
+                select#shiftTo.form-control(type='text' required) 
+
+          .row
+            .form-group.col-sm-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Available
+                input#availableAmount.form-control(type='text' disabled required) 
+            
+            .form-group.col-sm-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Sale
+                input#moveAmount.form-control(type='number' min = '' required) 
+
+          .alert.alert-danger#errorShifting(role='alert' style= 'display:none')
+            | Can not sale more than available!
+
+          .form-actions.d-flex.justify-content-center
+              button.btn.btn-primary.mx-1(type='submit' id = 'moveProductToShiftListButton')  
+                i.font-2xl.fas.fa-long-arrow-alt-down
+        br 
+        #shiftableProductTableDiv(style = 'background: #f0f3f5;')
+          #shiftableProductTableHeader.d-flex.justify-content-between
+            h3.m-auto Shiftable Product Table
+            button#printShiftableTableButton.btn(style = 'background-color: white;border-color:green')
+              i.font-2xl.cui-print
+          table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light#shiftableProductTable
+            thead
+              tr
+                th(style = 'width: 50px') Cancel
+                th Name
+                th Type
+                th Brand
+                th Country
+                th Supplier
+                th Size
+                th Available
+                th Move
+                th From
+                th To
+            tbody
+        .d-flex.justify-content-center.my-2
+          button#cancelShiftingButton.btn.btn-secondary.mx-1(type='button') Cancel        
+          button.btn.btn-primary.mx-1#shiftProductButton(type='button') Shift All
+  
+        
+   
+  script(src='js/shop/customer.js')
+  

@@ -13,6 +13,28 @@ client
   .then(() => console.log('Connected to database for customer'))
   .catch(e => console.log(e));
 
+module.exports.getCustomerData = async (name, callback) => {
+  const text = `select * from customer where customer_name = '${name}'`;
+  let customerData;
+  try {
+    customerData = await client.query(text);
+  } catch (err) {
+    console.log(err.stack);
+  }
+  callback(customerData.rows[0]);
+};
+
+module.exports.getCustomerName = async callback => {
+  const text = 'select customer_name from customer;';
+  let customerNameList;
+  try {
+    customerNameList = await client.query(text);
+  } catch (err) {
+    console.log(err.stack);
+  }
+  callback(customerNameList.rows);
+};
+
 module.exports.getAllCustomer = async callback => {
   const text = 'select * from customer;';
   let customerList;

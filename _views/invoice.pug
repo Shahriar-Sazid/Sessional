@@ -1,0 +1,41 @@
+extends /default.pug
+block topbar
+  ol.breadcrumb
+    h2(style='font-family: cursive;font-weight: bold;') Invoice
+    // Breadcrumb Menu
+    li.breadcrumb-menu.d-md-down-none
+      .btn-group(role="group" aria-label="Button group")
+        button.btn.addInvoiceButton(type="button" data-toggle = 'modal' data-target='#addInvoiceModal')
+          i.fa.fa-plus-circle
+          |  Add Invoice
+        .form-group.m-auto
+          .input-group
+            .input-group-prepend
+              select#searchBy.form-control(required)
+                option Name
+                option Bank
+            input#searchInvoiceInput.form-control(type='text' placeholder='Titu vai..')
+            .input-group-append
+              button#searchInvoiceButton.btn.btn-light(type='button')
+                span.input-group-text
+                  i.fas.fa-search
+              
+
+block view
+  script(src='js/shop/pugInvoiceTable.js')
+  script. 
+    let invoices = !{JSON.stringify(invoices)};
+
+  .animated.fadeIn
+    .row.mt-4
+      .col-lg-6#tableDiv(style = 'background: #f0f3f5;')
+        #stockTableHeader.d-flex.justify-content-between
+          h3.m-auto Invoice
+          button#printTableButton.btn(style = 'background-color: white;border-color:green')
+            i.font-2xl.cui-print
+        include _invoiceTable
+        
+
+  
+  script(src='js/shop/invoice.js')
+  

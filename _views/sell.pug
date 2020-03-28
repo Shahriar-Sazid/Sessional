@@ -1,0 +1,222 @@
+extends /default.pug
+block topbar
+  ol.breadcrumb
+    h2(style='font-family: cursive;font-weight: bold;') Sell
+
+block view
+  script. 
+    let products = !{JSON.stringify(products)};
+    let stock = !{JSON.stringify(stock)};
+
+  .animated.fadeIn
+    .row.mt-4
+      .col-lg-5(style='background: #39b2d529;')#invoiceBuilder
+        form.form(id = 'invoiceHeaderForm')
+          h3.my-3(style='color: #065875;font-family: cursive') Invoice
+          .row
+            .form-group.col-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Customer
+                select#customerSelect.form-control(type = 'text' required)
+            
+            .form-group.col-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Date
+                input#invoiceDateInput.form-control(type='date' required)
+          
+          hr
+          .row
+            .form-group.col-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Extra Spending
+                input#sellingExpense.form-control(type='number' min = '0')
+            
+            .form-group.col-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Expense From
+                select#accountSelect.form-control(type='text' required)
+                
+          hr
+          .row
+            .form-group.col-6
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Previous Balance
+                input#previousBalance.form-control(type='number' min = '0' required disabled)
+            
+            .form-actions.col-6.d-flex.justify-content-center
+              button.btn.btn-primary(type='submit' id = 'finalizeInvoiceButton' style = 'width: 50%;' disabled)  
+                | DONE
+          .alert.alert-danger#errorSelling(role='alert')
+              | Can not sell more than available!
+        .col-12#selectProductDiv
+          h3.my-3(style='color: #065875;font-family: cursive') Select Product to Sell
+          
+          form.form#searchProductForm
+            .form-group
+              .input-group
+                .input-group-prepend
+                  span.input-group-text Search
+                input.form-control#searchName(type='text' placeholder='Name..')
+                input.form-control#searchType(type='text' placeholder='Type, Brand..' disabled)
+                input.form-control#searchSize(type='text' placeholder='Size..' disabled)
+          
+          form.form#productInfoForm
+            .row
+              .form-group.col-6
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Name
+                  input#productName.form-control(type='text'  disabled)
+              
+              .form-group.col-6
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Type
+                  input#productType.form-control(type='text' disabled)
+            
+            .row
+              .form-group.col-6
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Brand
+                  input#productBrand.form-control(type='text' disabled)
+              
+              .form-group.col-6
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Country
+                  input#productCountry.form-control(type='text' disabled)
+            
+            .row 
+              .form-group.col-6
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Size
+                  input#productSize.form-control(type='text' disabled)
+
+              .form-group.col-6
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Supplier
+                  select#stockSupplier.form-control(disabled)
+
+              
+            
+            .row
+              .form-group.col-6
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Date
+                  input#stockDate.form-control(type='date' disabled)
+
+              .form-group.col-6
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Place
+                  select#stockPlace.form-control(type = 'text' disabled)
+
+            .row
+              
+              .form-group.col-6
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Cost
+                  input#stockCost.form-control(type='number' min = '0' disabled)
+              .form-group.col-6
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Available Quantity
+                  input#availableQuantity.form-control(type='text' disabled)
+            
+            .row
+              .form-group.col-5
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Selling Price/Unit
+                  input#sellingPrice.form-control(type='number' min = '0' required)
+              .form-group.col-4
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Sold Quantity
+                  input#soldQuantity.form-control(type='number' min='0' required)
+              .form-group.col-3
+                .input-group
+                  .input-group-prepend
+                    span.input-group-text Unit
+                  select#sellingUnit.form-control(type='text' required)
+            
+            
+            .form-actions.d-flex.justify-content-center
+                button.btn.btn-primary.mx-1(type='submit' id = 'moveToInvoiceButton')  
+                  i.font-2xl.fas.fa-long-arrow-alt-right
+            
+          
+          hr
+       
+          table.table.table-responsive-sm.table-bordered.table-striped.table-sm.table-light#searchTable
+            thead
+              tr
+                th(style = 'width: 50px') Sell
+                  th Name
+                  th Type
+                  th Brand
+                  th Country
+                  th Supplier
+                  th Size
+                  th Quantity
+                  th Cost
+            tbody
+
+      .col-lg-7(style='background: #ffffff')
+        .col-12.mt-2
+          .card
+            .card-body.p-0
+              button#printInvoiceButton.btn(style = 'background-color: white;border-color:green')
+                i.font-2xl.cui-print
+              .row.p-5
+                .col-md-6
+                  img(src="img/brand/final-logo.svg" width = '50%' alt="Abdullah Tools Logo")
+                  hr
+                  p.font-weight-bold.mb-1 Invoice #550
+                  p.text-muted#invoiceDate Date:  
+                .col-md-6.text-right.customer-info
+                  p Customer Information
+                  p#customerName 
+                  p#customerShop 
+                  p#customerAddress
+                  p#customerMobile 
+              hr
+              .row.p-3#invoiceTableContainer
+                .col-md-12
+                  table.table#invoiceTable
+                    thead
+                      tr
+                        th.table-header-item
+                          | Cancel
+                        th.table-header-item
+                          | Name
+                        th.table-header-item
+                          | Type
+                        th.table-header-item
+                          | Brand
+                        th.table-header-item
+                          | Size
+                        th.table-header-item
+                          | Quantity
+                        th.table-header-item
+                          | Price/Unit
+                        th.table-header-item
+                          | Total (taka)
+                    tbody
+                      
+              .d-flex.flex-row-reverse.bg-dark.text-white.p-4
+                .py-3.px-5.text-right#grandTotalContainer
+                  .mb-2 Grand Total
+                  .h2.font-weight-light#grandTotal 0 taka
+        
+  script(src='js/shop/sell.js')

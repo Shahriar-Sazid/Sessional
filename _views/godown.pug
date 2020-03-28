@@ -5,7 +5,7 @@ block topbar
     // Breadcrumb Menu
     li.breadcrumb-menu.d-md-down-none
       .btn-group(role="group" aria-label="Button group")
-        button.btn.addGodownSwitch(type="button")
+        button.btn.addGodownButton(type="button" data-toggle = 'modal' data-target='#addGodownModal')
           i.fa.fa-plus-circle
           |  Add Godown
         .form-group.m-auto
@@ -22,10 +22,9 @@ block topbar
               
 
 block view
-  script(src='js/pugGodownTable.js')
+  script(src='js/shop/pugGodownTable.js')
   script. 
     let godowns = !{JSON.stringify(godowns)};
-    const mode = !{JSON.stringify(mode)};
 
   .animated.fadeIn
     .row.mt-4
@@ -61,5 +60,5 @@ block view
               button.modal_close_btn.btn.btn-secondary.mx-1(type='button' data-dismiss='modal') Cancel        
               button.btn.btn-primary.mx-1(type='submit' id = "godownSaveButton") Add
   
-  script(src='js/godown.js')
+  script(src='js/shop/godown.js')
   

@@ -186,10 +186,10 @@ const addProduct = () => {
       try {
         const axiosRes = await axios({
           method: 'post',
-          url: 'http://127.0.0.1:3000/api/v1/product/',
+          url: 'http://127.0.0.1:3000/api/v1/stock/',
           responseType: 'json',
           data: {
-            newProductsList
+            products: newProductsList
           }
         });
         message = axiosRes;

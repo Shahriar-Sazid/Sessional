@@ -1,55 +1,93 @@
-const products = require('../_model/productModel');
-const customers = require('../_model/customerModel');
-const suppliers = require('../_model/supplierModel');
-const godowns = require('../_model/godownModel');
-const accounts = require('./../_model/accountModel');
+const product = require('../_model/productModel');
+const customer = require('../_model/customerModel');
+const supplier = require('../_model/supplierModel');
+const godown = require('../_model/godownModel');
+const account = require('./../_model/accountModel');
+const stock = require('./../_model/stockModel');
+const invoice = require('./../_model/invoiceModel');
+// const memo = require('../_model/memoModel');
 
 module.exports.getProductPage = (req, res) => {
-  products.getAllProduct(productList => {
+  product.getAllProduct(productList => {
     res.status(200).render('product.pug', {
-      page: 'Stock View',
-      mode: req.query.mode,
+      page: 'Product',
       products: productList.rows
     });
   });
 };
 
 module.exports.getCustomerPage = (req, res) => {
-  customers.getAllCustomer(customerList => {
+  customer.getAllCustomer(customerList => {
     res.status(200).render('customer.pug', {
       page: 'Customer',
-      mode: req.query.mode,
       customers: customerList.rows
     });
   });
 };
 
 module.exports.getSupplierPage = (req, res) => {
-  suppliers.getAllSupplier(supplierList => {
+  supplier.getAllSupplier(supplierList => {
     res.status(200).render('supplier.pug', {
       page: 'Supplier',
-      mode: req.query.mode,
       suppliers: supplierList.rows
     });
   });
 };
 
 module.exports.getGodownPage = (req, res) => {
-  godowns.getAllGodown(godownList => {
+  godown.getAllGodown(godownList => {
     res.status(200).render('godown.pug', {
       page: 'Godown',
-      mode: req.query.mode,
       godowns: godownList.rows
     });
   });
 };
 
 module.exports.getAccountPage = (req, res) => {
-  accounts.getAllAccount(accountList => {
+  account.getAllAccount(accountList => {
     res.status(200).render('account.pug', {
       page: 'Account',
-      mode: req.query.mode,
       accounts: accountList.rows
+    });
+  });
+};
+
+module.exports.getBuyPage = (req, res) => {
+  product.getAllProduct(productList => {
+    res.status(200).render('buy.pug', {
+      page: 'Buy',
+      products: productList.rows
+    });
+  });
+};
+
+module.exports.getSellPage = (req, res) => {
+  product.getAllProduct(async productList => {
+    const stockList = await stock.getAllStock();
+    res.status(200).render('sell.pug', {
+      page: 'Sell',
+      products: productList.rows,
+      stock: stockList.rows
+    });
+  });
+};
+
+module.exports.getStockPage = (req, res) => {
+  product.getAllProduct(async productList => {
+    const stockList = await stock.getAllStock();
+    res.status(200).render('stock.pug', {
+      page: 'Stock',
+      products: productList.rows,
+      stock: stockList.rows
+    });
+  });
+};
+
+module.exports.getInvoicePage = (req, res) => {
+  invoice.getAllInvoice(invoiceList => {
+    res.status(200).render('invoice.pug', {
+      page: 'Invoice',
+      invoices: invoiceList.rows
     });
   });
 };

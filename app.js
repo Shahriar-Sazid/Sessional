@@ -8,6 +8,9 @@ const godownRouter = require('./_routes/godownRoutes');
 const productRouter = require('./_routes/productRouter');
 const customerRouter = require('./_routes/customerRoutes');
 const accountRouter = require('./_routes/accountRoutes');
+const stockRouter = require('./_routes/stockRoutes');
+const unitRouter = require('./_routes/unitRoutes');
+const invoiceRouter = require('./_routes/invoiceRoutes');
 
 const app = express();
 const port = 3000;
@@ -19,9 +22,9 @@ app.use(cors());
 
 // clientPug.createClientPug(
 //   __dirname,
-//   '_accountTable.pug',
-//   'pugAccountTable.js',
-//   'renderAccountTable'
+//   '_stockTable.pug',
+//   'pugStockTable.js',
+//   'renderStockTable'
 // );
 
 app.set('view engine', 'pug');
@@ -37,5 +40,8 @@ app.use('/api/v1/godown/', godownRouter);
 app.use('/api/v1/product/', productRouter);
 app.use('/api/v1/customer/', customerRouter);
 app.use('/api/v1/account/', accountRouter);
+app.use('/api/v1/stock/', stockRouter);
+app.use('/api/v1/unit/', unitRouter);
+app.use('/api/v1/invoice/', invoiceRouter);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

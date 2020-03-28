@@ -3,27 +3,12 @@
     ul.nav
       if !starter
         li.nav-title
-          |  Menu
-        li.nav-item.nav-dropdown
-          a.nav-link.nav-dropdown-toggle(href="#")
+          |  Settings
+        li.nav-item
+          a.nav-link#viewProductSwitch
             i.nav-icon.fas.fa-tools
             |  Product
-          ul.nav-dropdown-items
-            li.nav-item(style='background-color: #1b1f3a8c;')
-              a.nav-link#viewProductSwitch
-                i.nav-icon.fa.fa-list
-                |  View
-            li.nav-item(style='background-color: #1b1f3a8c;')
-              a.nav-link.addProductSwitch
-                i.nav-icon.fa.fa-plus-circle
-                |  Add
-            li.nav-item(style='background-color: #1b1f3a8c;')
-              a.nav-link.shiftProductSwitch
-                i.nav-icon.fa.fa-exchange
-                |  Shift
-        
-        
-
+            
         li.nav-item
           a.nav-link#viewCustomerSwitch
             i.nav-icon.fas.fa-person-booth
@@ -41,8 +26,46 @@
         
         li.nav-item
           a.nav-link#viewAccountSwitch
-            i.nav-icon.fas.fa-hand-holding-usd
+            i.nav-icon.fas.fa-file-invoice-dollar
             |  Account
         
+
+        li.nav-title
+          |  Business
+        li.nav-item
+          a.nav-link#buySwitch
+            i.nav-icon.fas.fa-balance-scale-left
+            |  Buy
         
+        li.nav-item
+          a.nav-link#sellSwitch
+            i.nav-icon.fas.fa-balance-scale-right
+            |  Sell
+            
+        li.nav-item
+          a.nav-link#stockSwitch
+            i.nav-icon.fas.fa-cubes
+            |  Stock
+
+        li.nav-title
+          |  Report
+        li.nav-item
+          a.nav-link#incomeSwitch
+            i.nav-icon.fas.fa-dollar-sign
+            |  Income
+        
+        li.nav-item
+          a.nav-link#expenseSwitch
+            i.nav-icon.fas.fa-coins
+            |  Expense
+
+        li.nav-item
+          a.nav-link#debtsSwitch
+            i.nav-icon.fas.fa-hand-holding-usd(style = 'transform: scaleY(-1);')
+            |  Debts
+
+        li.nav-item
+          a.nav-link#duesSwitch
+            i.nav-icon.fas.fa-hand-holding-usd
+            |  Dues
   button.sidebar-minimizer(type="button")

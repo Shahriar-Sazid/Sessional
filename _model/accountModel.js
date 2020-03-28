@@ -13,6 +13,16 @@ client
   .then(() => console.log('Connected to database for account'))
   .catch(e => console.log(e));
 
+module.exports.getAccountName = async callback => {
+  const text = 'select account_name from account;';
+  let accountNameList;
+  try {
+    accountNameList = await client.query(text);
+  } catch (err) {
+    console.log(err.stack);
+  }
+  callback(accountNameList.rows);
+};
 module.exports.getAllAccount = async callback => {
   const text = 'select * from account;';
   let accountList;

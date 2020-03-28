@@ -2,13 +2,6 @@
 /* eslint-disable no-undef */
 /*eslint-env browser*/
 
-const setupMode = () => {
-  if (mode === 'add') {
-    const addAccountModal = $('#addAccountModal');
-    addAccountModal.modal('show');
-  }
-};
-
 const addOrUpdateAccount = () => {
   const modalTitle = $('#addAccountModalTitle');
   const addAccountForm = $('#addAccountForm');
@@ -22,6 +15,20 @@ const addOrUpdateAccount = () => {
     addButton.html('Update');
     addButton.attr('disabled', true);
   };
+
+  $(document).on('click', '.addAccountButton', () => {
+    if (page === 'Account') {
+      const setupAddModal = () => {
+        modalTitle.html('Add Account');
+        addButton.html('Add');
+
+        addButton.attr('disabled', false);
+      };
+      setupAddModal();
+      const addAccountModal = $('#addAccountModal');
+      addAccountModal.modal('show');
+    }
+  });
 
   const fillForm = btn => {
     const accountName = btn.dataset.accountname;
@@ -208,8 +215,6 @@ const searchAccount = () => {
     }
   });
 };
-
-setupMode();
 
 addOrUpdateAccount();
 searchAccount();

@@ -5,7 +5,7 @@ block topbar
     // Breadcrumb Menu
     li.breadcrumb-menu.d-md-down-none
       .btn-group(role="group" aria-label="Button group")
-        button.btn.addSupplierSwitch(type="button")
+        button.btn.addSupplierButton(type="button" data-toggle = 'modal' data-target='#addSupplierModal')
           i.fa.fa-plus-circle
           |  Add Supplier
         .form-group.m-auto
@@ -23,10 +23,9 @@ block topbar
               
 
 block view
-  script(src='js/pugSupplierTable.js')
+  script(src='js/shop/pugSupplierTable.js')
   script. 
     let suppliers = !{JSON.stringify(suppliers)};
-    const mode = !{JSON.stringify(mode)};
 
   .animated.fadeIn
     .row.mt-4
@@ -87,5 +86,5 @@ block view
               button.modal_close_btn.btn.btn-secondary.mx-1(type='button' data-dismiss='modal') Cancel        
               button.btn.btn-primary.mx-1(type='submit' id = "supplierSaveButton") Add
   
-  script(src='js/supplier.js')
+  script(src='js/shop/supplier.js')
   
