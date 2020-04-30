@@ -75,7 +75,7 @@
     "express-validator": "^6.3.0",
     "flag-icon-css": "^3.4.5",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "js-stringify": "^1.0.2",
     "pace-progress": "1.0.2",
     "perfect-scrollbar": "^1.4.0",
