@@ -14,6 +14,7 @@ const addOrUpdateCustomer = () => {
     modalTitle.html('Update Customer');
     addButton.html('Update');
     addButton.attr('disabled', true);
+    $('#customerName').attr('disabled', true);
   };
 
   $(document).on('click', '.addCustomerButton', () => {

@@ -14,6 +14,7 @@ const addOrUpdateAccount = () => {
     modalTitle.html('Update Account');
     addButton.html('Update');
     addButton.attr('disabled', true);
+    $('#accountName').attr('disabled', true);
   };
 
   $(document).on('click', '.addAccountButton', () => {

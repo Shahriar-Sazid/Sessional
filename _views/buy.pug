@@ -106,19 +106,17 @@ block view
   
       .col-lg-6(style='background: #39b2d529;')
         h3.my-3(style='color: #065875;font-family: cursive') Additional Expense
-        form.form(action='' method='post' id = 'addProductForm')
-          .form-group.mx-5
-            .input-group
-              .input-group-prepend
-                span.input-group-text Amount
-              input#newProductAdditionalExpense.form-control(type='text')
-          .form-group.mx-5
-            .input-group
-              .input-group-prepend
-                span.input-group-text Expense From
-              input.form-control(type='text')
-          .form-actions.d-flex.justify-content-center
-            button.btn.btn-primary.my-2(type='submit') Add All
+          //- .form-group.mx-5
+          //-   .input-group
+          //-     .input-group-prepend
+          //-       span.input-group-text Amount
+          //-     input#newProductAdditionalExpense.form-control(type='text')
+          //- .form-group.mx-5
+          //-   .input-group
+          //-     .input-group-prepend
+          //-       span.input-group-text Expense From
+          //-     input.form-control(type='text')
+          
   
         br
         #newProductsTableDiv(style = 'background: #f0f3f5;')
@@ -142,4 +140,7 @@ block view
                 th Date
             tbody
         
+        form.form(action='' method='post' id = 'addProductForm')
+          .form-actions.d-flex.justify-content-center
+              button.btn.btn-primary.my-2(type='submit') Add All
   script(src='js/shop/buy.js')

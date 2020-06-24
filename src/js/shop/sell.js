@@ -14,7 +14,12 @@ const setup = async () => {
   const printInvoiceButton = $('#printInvoiceButton');
   const searchTable = $('#searchTable');
   const errorSelling = $('#errorSelling');
+  const prevInvoiceButton = $('#prevInvoiceButton');
   errorSelling.hide();
+
+  prevInvoiceButton.click(function() {
+    window.location.assign('http://127.0.0.1:3000/invoice');
+  });
 
   const invoiceTableContainer = $('#invoiceTableContainer');
   const grandTotalContainer = $('#grandTotalContainer');
@@ -261,7 +266,10 @@ const sellProduct = () => {
         searchTable.show(300);
         nameResult.forEach(pr => {
           stock.forEach(st => {
-            if (st.product_id === pr.product_id) {
+            if (
+              st.product_id === pr.product_id &&
+              st.place === 'Sales Center'
+            ) {
               insertRowToSearchTable(st, pr);
               productInfoForm.hide(200);
             }

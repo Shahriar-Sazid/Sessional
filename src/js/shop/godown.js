@@ -14,6 +14,7 @@ const addOrUpdateGodown = () => {
     modalTitle.html('Update Godown');
     addButton.html('Update');
     addButton.attr('disabled', true);
+    $('#godownName').attr('disabled', true);
   };
 
   $(document).on('click', '.addGodownButton', () => {

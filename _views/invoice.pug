@@ -2,23 +2,23 @@ extends /default.pug
 block topbar
   ol.breadcrumb
     h2(style='font-family: cursive;font-weight: bold;') Invoice
-    // Breadcrumb Menu
-    li.breadcrumb-menu.d-md-down-none
-      .btn-group(role="group" aria-label="Button group")
-        button.btn.addInvoiceButton(type="button" data-toggle = 'modal' data-target='#addInvoiceModal')
-          i.fa.fa-plus-circle
-          |  Add Invoice
-        .form-group.m-auto
-          .input-group
-            .input-group-prepend
-              select#searchBy.form-control(required)
-                option Name
-                option Bank
-            input#searchInvoiceInput.form-control(type='text' placeholder='Titu vai..')
-            .input-group-append
-              button#searchInvoiceButton.btn.btn-light(type='button')
-                span.input-group-text
-                  i.fas.fa-search
+    //- // Breadcrumb Menu
+    //- li.breadcrumb-menu.d-md-down-none
+    //-   .btn-group(role="group" aria-label="Button group")
+    //-     button.btn.addInvoiceButton(type="button" data-toggle = 'modal' data-target='#addInvoiceModal')
+    //-       i.fa.fa-plus-circle
+    //-       |  Add Invoice
+    //-     .form-group.m-auto
+    //-       .input-group
+    //-         .input-group-prepend
+    //-           select#searchBy.form-control(required)
+    //-             option Name
+    //-             option Bank
+    //-         input#searchInvoiceInput.form-control(type='text' placeholder='Titu vai..')
+    //-         .input-group-append
+    //-           button#searchInvoiceButton.btn.btn-light(type='button')
+    //-             span.input-group-text
+    //-               i.fas.fa-search
               
 
 block view

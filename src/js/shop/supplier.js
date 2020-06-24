@@ -14,6 +14,7 @@ const addOrUpdateSupplier = () => {
     modalTitle.html('Update Supplier');
     addButton.html('Update');
     addButton.attr('disabled', true);
+    $('#supplierName').attr('disabled', true);
   };
 
   $(document).on('click', '.addSupplierButton', () => {

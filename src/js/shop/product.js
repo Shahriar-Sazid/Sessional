@@ -7,7 +7,7 @@ const addOrUpdateProduct = () => {
   const addProductForm = $('#updateProductForm');
   const addButton = $('#productSaveButton');
   const addProductModal = $('#addProductModal');
-  const deleteButton = $('#deleteProductButton');
+  // const deleteButton = $('#deleteProductButton');
 
   const updatedProduct = {};
 
@@ -15,7 +15,7 @@ const addOrUpdateProduct = () => {
     modalTitle.html('Update Product');
     addButton.html('Update');
     addButton.attr('disabled', true);
-    deleteButton.show();
+    // deleteButton.show();
   };
 
   $(document).on('click', '.addProductButton', () => {
@@ -24,7 +24,7 @@ const addOrUpdateProduct = () => {
         modalTitle.html('Add Product');
         addButton.html('Add');
         addButton.attr('disabled', false);
-        deleteButton.hide();
+        // deleteButton.hide();
       };
       setupAddModal();
       addProductModal.modal('show');

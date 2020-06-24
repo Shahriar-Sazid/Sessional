@@ -12,4 +12,5 @@ table#invoiceTable.table.table-responsive-sm.table-bordered.table-striped.table-
         td #{invoice.customer_name}
         - const date = new Date(invoice.date);
         td #{date.toISOString().slice(0,10)}
-        td #{invoice.profit}
+        - const profit = Number.isInteger(invoice.profit)? invoice.profit: invoice.profit.toFixed(2);
+        td #{profit}

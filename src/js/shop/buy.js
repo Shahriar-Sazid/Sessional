@@ -304,7 +304,7 @@ const buyProduct = () => {
       } catch (error) {
         console.log(error.stack);
       }
-      // window.location.reload(true);
+      window.location.assign('http://127.0.0.1:3000/stock');
     }
   });
   printNewProductsTable();
