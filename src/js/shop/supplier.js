@@ -97,8 +97,6 @@ const addOrUpdateSupplier = () => {
         }
       }
     } else if (modalTitle.html() === 'Update Supplier') {
-      errorAlert.hoise = false;
-
       updatedSupplier.name = $('#supplierName').val();
       updatedSupplier.company = $('#supplierCompany').val();
       updatedSupplier.address = $('#supplierAddress').val();
@@ -107,28 +105,19 @@ const addOrUpdateSupplier = () => {
       updatedSupplier.telephone = $('#supplierTelephone').val();
       updatedSupplier.email = $('#supplierEmail').val();
 
-      for (let i = 0; i < suppliers.length; i += 1) {
-        if (suppliers[i].supplier_name === updatedSupplier.name) {
-          errorAlert.show();
-          errorAlert.hoise = true;
-        }
-      }
-      console.log(updatedSupplier);
-      if (!errorAlert.hoise) {
-        try {
-          const axiosRes = await axios({
-            method: 'patch',
-            url: `http://127.0.0.1:3000/api/v1/supplier/`,
-            responseType: 'json',
-            data: {
-              updatedSupplier
-            }
-          });
-          message = axiosRes;
-          console.log(message);
-        } catch (error) {
-          console.log(error.stack);
-        }
+      try {
+        const axiosRes = await axios({
+          method: 'patch',
+          url: `http://127.0.0.1:3000/api/v1/supplier/`,
+          responseType: 'json',
+          data: {
+            updatedSupplier
+          }
+        });
+        message = axiosRes;
+        console.log(message);
+      } catch (error) {
+        console.log(error.stack);
       }
     }
     $(document).ready(function() {

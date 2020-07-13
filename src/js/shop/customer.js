@@ -97,8 +97,6 @@ const addOrUpdateCustomer = () => {
         }
       }
     } else if (modalTitle.html() === 'Update Customer') {
-      errorAlert.hoise = false;
-
       updatedCustomer.name = $('#customerName').val();
       updatedCustomer.company = $('#customerCompany').val();
       updatedCustomer.address = $('#customerAddress').val();
@@ -107,28 +105,19 @@ const addOrUpdateCustomer = () => {
       updatedCustomer.telephone = $('#customerTelephone').val();
       updatedCustomer.email = $('#customerEmail').val();
 
-      for (let i = 0; i < customers.length; i += 1) {
-        if (customers[i].customer_name === updatedCustomer.name) {
-          errorAlert.show();
-          errorAlert.hoise = true;
-        }
-      }
-      console.log(updatedCustomer);
-      if (!errorAlert.hoise) {
-        try {
-          const axiosRes = await axios({
-            method: 'patch',
-            url: `http://127.0.0.1:3000/api/v1/customer/`,
-            responseType: 'json',
-            data: {
-              updatedCustomer
-            }
-          });
-          message = axiosRes;
-          console.log(message);
-        } catch (error) {
-          console.log(error.stack);
-        }
+      try {
+        const axiosRes = await axios({
+          method: 'patch',
+          url: `http://127.0.0.1:3000/api/v1/customer/`,
+          responseType: 'json',
+          data: {
+            updatedCustomer
+          }
+        });
+        message = axiosRes;
+        console.log(message);
+      } catch (error) {
+        console.log(error.stack);
       }
     }
     $(document).ready(function() {

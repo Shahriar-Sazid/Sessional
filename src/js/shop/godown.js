@@ -85,33 +85,22 @@ const addOrUpdateGodown = () => {
         }
       }
     } else if (modalTitle.html() === 'Update Godown') {
-      errorAlert.hoise = false;
-
       updatedGodown.name = $('#godownName').val();
       updatedGodown.address = $('#godownAddress').val();
 
-      for (let i = 0; i < godowns.length; i += 1) {
-        if (godowns[i].godown_name === updatedGodown.name) {
-          errorAlert.show();
-          errorAlert.hoise = true;
-        }
-      }
-      console.log(updatedGodown);
-      if (!errorAlert.hoise) {
-        try {
-          const axiosRes = await axios({
-            method: 'patch',
-            url: `http://127.0.0.1:3000/api/v1/godown/`,
-            responseType: 'json',
-            data: {
-              updatedGodown
-            }
-          });
-          message = axiosRes;
-          console.log(message);
-        } catch (error) {
-          console.log(error.stack);
-        }
+      try {
+        const axiosRes = await axios({
+          method: 'patch',
+          url: `http://127.0.0.1:3000/api/v1/godown/`,
+          responseType: 'json',
+          data: {
+            updatedGodown
+          }
+        });
+        message = axiosRes;
+        console.log(message);
+      } catch (error) {
+        console.log(error.stack);
       }
     }
     $(document).ready(function() {
